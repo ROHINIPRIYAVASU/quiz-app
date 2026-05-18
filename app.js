@@ -10,6 +10,7 @@ const questionEl = document.getElementById('question');
 const answersEl = document.getElementById('answers');
 const currentEl = document.getElementById('current');
 const scoreEl = document.getElementById('score');
+const nextBtn = document.getElementById('next-btn');
 
 // ---- GAME VARIABLES ----
 let questions = [];
@@ -65,15 +66,8 @@ function checkAnswer(btn, selected, correct) {
         });
     }
 
-    // Move to next question after 1 second
-    setTimeout(() => {
-        currentQuestion++;
-        if (currentQuestion < questions.length) {
-            showQuestion();
-        } else {
-            showResult();
-        }
-    }, 1000);
+    // Show next button
+    nextBtn.classList.remove('hidden');
 }
 
 // ---- SHOW FINAL RESULT ----
@@ -97,5 +91,15 @@ restartBtn.onclick = () => {
     score = 0;
     resultScreen.classList.add('hidden');
     startScreen.classList.remove('hidden');
+}
+// ---- NEXT BUTTON ----
+nextBtn.onclick = () => {
+    nextBtn.classList.add('hidden');
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+        showQuestion();
+    } else {
+        showResult();
+    }
 }
 
