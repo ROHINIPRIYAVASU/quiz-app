@@ -79,7 +79,11 @@ function showResult() {
 
 // ---- START QUIZ ----
 startBtn.onclick = async () => {
+    startBtn.disabled = true;
+    startBtn.textContent = 'Loading... ⏳';
     await fetchQuestions();
+    startBtn.disabled = false;
+    startBtn.textContent = 'Start Quiz';
     startScreen.classList.add('hidden');
     quizScreen.classList.remove('hidden');
     showQuestion();
